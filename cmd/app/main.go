@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"log"
 	"mongodb-connection/internal/data"
 	"mongodb-connection/internal/db"
@@ -21,7 +22,8 @@ func main() {
 	logEntry := data.New(client)
 
 	// Insert a new log entry
-	err = logEntry.LogEntry.Insert(data.LogEntry{
+	ctx := context.Background()
+	err = logEntry.LogEntry.Insert(ctx, data.LogEntry{
 		Name: "New Log",
 		Data: "This is a test data.",
 	})
